@@ -1,0 +1,98 @@
+-- Task 1
+-- INSERT INTO Actors (First_name, Last_name, Age, Movie_name,Budget, Manager, Release_year, Sex)
+-- VALUES
+-- ("Arnold", "Schwarzenegger", 78, "The Terminator", 6400000, "James Cameron", 1984, "male"),
+-- ("Arnold", "Schwarzenegger", 78, "The Terminator 2", 102000000, "James Cameron", 1991, "male"),
+-- ("Arnold", "Schwarzenegger", 78, "The Terminator 3", 200000000, "James Cameron", 2003, "male"),
+-- ("Jason", "Statham", 56, "Snatch", 10000000, "Guy Ritchie", 2000, "male"),
+-- ("Jason", "Statham", 56, "The Transporter", 21000000, "Louis Leterrier", 2002, "male"),
+-- ("Jason", "Statham", 56, "Lock, Stock and Two Smoking Barrels", 1000000, "Guy Ritchie", 1998, "male"),
+-- ("Brad", "Pitt", 60, "Snatch", 10000000, "Guy Ritchie", 2000, "male"),
+-- ("Brad", "Pitt", 60, "Mr. & Mrs. Smith", 110000000, "Doug Liman", 2005, "male"),
+-- ("Brad", "Pitt", 60, "Inglourious Basterds", 70000000, "Quentin Tarantino", 2009, "male"),
+-- ("Dwayne", "Johnson", 51, "Central Intelligence", 50000000, "Rawson Marshall Thurber", 2016, "male"),
+-- ("Dwayne", "Johnson", 51, "Jumanji: Welcome to the Jungle", 90000000, "Quentin Tarantino", 2017, "male"),
+-- ("Paul", "Walker", 40, "The Fast and the Furious", 38000000, "Rob Cohen", 2001, "male"),
+-- ("Paul", "Walker", 40, "The Fast and the Furious 2", 76000000, "John Singleton", 2003, "male"),
+-- ("Vin", "Diesel", 56, "The Fast and the Furious", 38000000, "Rob Cohen", 2001, "male"),
+-- ("Vin", "Diesel", 56, "The Fast and the Furious 2", 76000000, "John Singleton", 2003, "male"),
+-- ("Vin", "Diesel", 56, "Riddick", 38000000, "David Twohy", 2013, "male"),
+-- ("Chris", "Hemsworth", 40, "Thor", 150000000, "David Twohy", 2011, "male"),
+-- ("Chris", "Hemsworth", 40, "Thor 2", 170000000, "Alan Taylor", 2013, "male"),
+-- ("Chris", "Hemsworth", 40, "Thor: Ragnarok", 180000000, "Taika Waititi", 2017, "male"),
+-- ("Johnny", "Depp", 60, "Pirates of the Caribbean", 140000000, "Gore Verbinski", 2003, "male"),
+-- ("Johnny", "Depp", 60, "Pirates of the Caribbean 2", 225000000, "Gore Verbinski", 2006, "male"),
+-- ("Johnny", "Depp", 60, "Pirates of the Caribbean 3", 300000000, "Gore Verbinski", 2007, "male"),
+-- ("Charlie", "Hunnam", 43, "King Arthur: Legend of the Sword", 175000000, "Guy Ritchie", 2017, "male"),
+-- ("Charlie", "Hunnam", 43, "Papillon", 1000000, "Michael Noer", 2017, "male"),
+-- ("Charlie", "Hunnam", 43, "The Gentlemen", 22000000, "Guy Ritchie", 2019, "male"),
+-- ("Matthew", "McConaughey", 54, "The Gentlemen", 22000000, "Guy Ritchie", 2019, "male"),
+-- ("Matthew", "McConaughey", 54, "Interstellar", 165000000, "Christopher Nolan", 2014, "male"),
+-- ("Leonardo", "DiCaprio", 49, "Inception", 160000000, "Christopher Nolan", 2010, "male"),
+-- ("Leonardo", "DiCaprio", 49, "Shutter Island", 80000000, "Martin Scorsese", 2009, "male"),
+-- ("Leonardo", "DiCaprio", 49, "The Aviator", 110000000, "Martin Scorsese", 2004, "male"),
+-- ("Natalie", "Portman", 42, "Léon", 10000000, "Luc Besson", 1994, "female"),
+-- "Natalie", "Portman", 42, "Avengers: Endgame", 356000000, "Anthony Russo", 2019, "female"),
+-- ("Jennifer", "Aniston", 55, "We're the Millers", 37000000, "Rawson Marshall Thurber", 2013, "female"),
+-- ("Jennifer", "Aniston", 55, "Friends", 10000000, "Gary Halvorson", 1994, "female"),
+-- ("Angelina", "Jolie", 48, "Mr. & Mrs. Smith", 110000000, "Doug Liman", 2005, "female"),
+-- ("Angelina", "Jolie", 48, "Eternals", 200000000, "Chloé Zhao", 2021, "female"),
+-- "Angelina", "Jolie", 48, "Alexander", 150000000, "Oliver Stone", 2004, "female"),
+-- ("Uma", "Thurman", 53, "Pulp Fiction", 8000000, "Quentin Tarantino", 1994, "female"),
+-- ("Uma", "Thurman", 53, "Kill Bill: Vol. 1", 30000000, "Quentin Tarantino", 2003, "female"),
+-- ("Uma", "Thurman", 53, "Kill Bill: Vol. 2", 30000000, "Quentin Tarantino", 2004, "female");
+
+-- Task 2
+-- ALTER TABLE Actors
+-- ADD COLUMN "fee_REAL" INTEGER;
+
+-- Task 3
+-- ALTER TABLE Actors RENAME COLUMN "fee_REAL" TO "fee_actors";
+-- ALTER TABLE Actors
+-- ADD COLUMN "City" TEXT
+-- DEFAULT "USA";
+
+-- Task 4
+-- SELECT * FROM Actors;
+-- SELECT DISTINCT First_name, (Last_name) FROM Actors
+-- WHERE Release_year > 1990 AND Release_year <= 2000;
+
+-- Task 5
+-- SELECT * FROM Actors;
+-- SELECT Movie_name 
+-- FROM Actors
+-- WHERE Last_name IN (
+--     SELECT Last_name
+--     FROM Actors
+--     GROUP BY Last_name
+--     HAVING COUNT(*) >= 2
+-- )
+-- ORDER BY Last_name;
+
+-- Task 6
+-- SELECT * FROM Actors;
+-- SELECT DISTINCT First_name, (Last_name) FROM Actors
+-- WHERE Age >= 55 AND Sex = "male";
+
+-- Task 7
+-- SELECT Movie_name 
+-- FROM Actors
+-- WHERE Last_name IN (
+--     SELECT Last_name
+--     FROM Actors
+--     GROUP BY Last_name
+--     HAVING COUNT(*) >= 2
+-- )
+-- AND fee_actors >= 10000000
+
+-- Task 8
+-- SELECT * FROM Actors;
+-- SELECT SUM (fee_actors) FROM Actors
+-- WHERE Release_year BETWEEN 1995 AND 2005;
+
+-- Task 9
+-- ALTER TABLE Actors
+-- ADD COLUMN "Date_of_birth" INTEGER;
+-- SELECT * FROM Actors;
+-- SELECT Movie_name, First_name, Last_name FROM Actors
+-- WHERE Release_year - Date_of_birth <= 35;
