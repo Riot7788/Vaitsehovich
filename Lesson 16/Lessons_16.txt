@@ -1,0 +1,72 @@
+"""Task 1"""
+
+import sqlite3
+
+with sqlite3.connect("Cinema_15les.db") as con:
+    cur = con.cursor()
+
+    res = cur.execute(
+        """
+        SELECT name_movie,release FROM movies
+        WHERE release BETWEEN 2015 AND 2020
+        """
+    )
+    actors = res.fetchall()
+
+print(actors)
+
+"""Task 2"""
+
+    res = cur.execute(
+        """
+    SELECT actors.surname
+    FROM actors
+    LEFT JOIN actors_movies ON actors.actors_id = actors_movies.actors_id
+    WHERE actors_movies.actors_id IS NULL
+        """
+    )
+    actors = res.fetchall()
+
+print(actors)
+
+"""Task 3"""
+
+    res = cur.execute(
+        """
+    SELECT movies.name_movie, movies.release, actors_movies.actors_id
+	FROM movies
+	JOIN actors_movies ON movies.movie_id = actors_movies.movies_id
+	JOIN actors ON actors_movies.actors_id = actors.actors_id
+	WHERE movies.release > 2000
+	GROUP BY movies.name_movie
+	HAVING COUNT(actors_movies.actors_id) >= 2;
+        """
+    )
+    actors = res.fetchall()
+
+"""Task 4"""
+
+    res = cur.execute(
+        """
+    SELECT actors.name, actors.surname, Bank_accounts.finance
+    FROM actors
+    JOIN Bank_accounts ON actors.actors_id = Bank_accounts.actors_id
+    ORDER BY Bank_accounts.finance DESC
+    LIMIT 5
+        """
+    )
+
+"""Task 5"""
+
+    res = cur.execute(
+        """
+    SELECT actors.surname
+    FROM actors
+    LEFT JOIN actors_movies ON actors.actors_id = actors_movies.actors_id
+    GROUP BY actors.surname
+    HAVING COUNT (actors_movies.movies_id) = 1
+        """
+    )
+    actors = res.fetchall()
+
+print(actors)
